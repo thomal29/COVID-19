@@ -10,4 +10,5 @@
 ## E. Description of analyses
 ## F. Conclusions
 ## G. Viewing this project
-"The completed project files can be accessed online at (project's URL). The repo for this reproducible project is also publicly available at (your GitHub repo address)"
+"The completed project files can be accessed online at file:///Users/laurenthomas/COVID-19/README.html. The repo for this reproducible project is also publicly available at https://github.com/thomal29/COVID-19"
+
