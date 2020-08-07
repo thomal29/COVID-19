@@ -1,0 +1,50 @@
+---
+title: "COVID-19 Research Project"
+author: "Lauren Thomas"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, error = FALSE)
+
+library(tidyverse)
+library(lubridate)
+library(HelpersMG)
+```
+
+```{r download_Data}
+if(!file.exists("./raw_data/owid-covid-data.csv")) {
+  wget(url = "https://covid.ourworldindata.org/data/owid-covid-data.csv", destfile = "./raw_data/owid-covid-data.csv")
+}
+ 
+if(!file.exists("./raw_data/OxCGRT_latest.csv")) {
+  wget(url = "https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv", destfile = "./raw_data/OxCGRT_latest.csv")
+}
+
+```
+
+
+```{r tidying}
+read_csv("./raw_data/OxCGRT_latest.csv") %>%
+  mutate(Date = ymd(Date)) %>%
+  inner_join(read_csv("./raw_data/owid-covid-data.csv"), by = c("CountryCode" = "iso_code", "Date" = "date")) %>%
+  write_csv("./output/covid_data.csv")
+
+```
+
+## Introduction
+
+## Hypothesis
+
+## Hypothesis
+
+## Datasets used
+
+## Analyses 
+
+## Conclusions
+
+## Viewing this project
+The completed project files can be accessed online at file:///Users/laurenthomas/COVID-19/README.html. The repo for this reproducible project is also publicly available at https://github.com/thomal29/COVID-19
