@@ -56,9 +56,20 @@ kable(first_case, caption = "First COVID-19 Case") %>%
 
 ```
 
+```{r Workplace_Thailand}
+Workplace_Thailand <- read_csv("./output/covid_data.csv") %>%
+	select("Workplace_Closing_ordinal_scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
+	filter(Country == "Thailand", date <= "2020-03-19", date >= "2020-03-15") %>%
+	arrange(date) 
+	
+
+kable(Workplace_Thailand, caption = "Workplace Restriction") %>%
+	kable_styling()
+	
 
 
-
+```
+2 on the 'Ordinal scale' represents, "required closing (or work from home) for some categories of workers. 
 
 ## Conclusions
 
