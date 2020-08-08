@@ -3,19 +3,22 @@ title: "COVID-19 Research Project"
 author: "Lauren Thomas"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
+theme: cerulean
+hihghlight: monochrome
 
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, error = FALSE)
 
 library(tidyverse)
 library(lubridate)
 library(HelpersMG)
 library(kableExtra)
+library(tinytex)
 ```
 
-```{r download_Data}
+```{r download_Data, echo = FALSE}
 if(!file.exists("./raw_data/owid-covid-data.csv")) {
   wget(url = "https://covid.ourworldindata.org/data/owid-covid-data.csv", destfile = "./raw_data/owid-covid-data.csv")
 }
@@ -27,7 +30,7 @@ if(!file.exists("./raw_data/OxCGRT_latest.csv")) {
 ```
 
 
-```{r tidying}
+```{r tidying, echo = FALSE}
 read_csv("./raw_data/OxCGRT_latest.csv") %>%
   mutate(Date = ymd(Date)) %>%
   inner_join(read_csv("./raw_data/owid-covid-data.csv"), by = c("CountryCode" = "iso_code", "Date" = "date")) %>%
@@ -39,9 +42,9 @@ read_csv("./raw_data/OxCGRT_latest.csv") %>%
 
 ## Hypothesis
 
-## Datasets used
+## Data 
 
-## Analyses 
+### Analyses 
 
 
 
@@ -51,27 +54,44 @@ first_case <- read_csv("./raw_data/owid-covid-data.csv") %>%
 	filter(Total_Cases == 1, Date <= "2020-01-19") %>%
 	arrange(Date) 
 			
-kable(first_case, caption = "First COVID-19 Case") %>%
+knitr::kable(first_case, caption = "First COVID-19 Case") %>%
 	kable_styling(position = "float_left")
 
 ```
 
 ```{r Workplace_Thailand}
 Workplace_Thailand <- read_csv("./output/covid_data.csv") %>%
-	select("Workplace_Closing_ordinal_scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
-	filter(Country == "Thailand", date <= "2020-03-19", date >= "2020-03-15") %>%
+	select("Ordinal_Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
+	filter(Country == "Thailand", date <= "2020-03-22", date >= "2020-03-15") %>%
 	arrange(date) 
 	
 
-kable(Workplace_Thailand, caption = "Workplace Restriction") %>%
+knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction") %>%
 	kable_styling()
 	
 
 
 ```
-2 on the 'Ordinal scale' represents, "required closing (or work from home) for some categories of workers. 
+
+^[2 on the 'Ordinal scale' represents, "required closing (or work from home) for some categories of workers.]
+
+
+
+```{r Workplace_Japan}
+Workplace_Japan <- read_csv("./output/covid_data.csv") %>%
+	select("Ordinal_Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
+	filter(Country == "Japan", date >= "2020-02-22", date <= "2020-02-29") %>%
+	arrange(date)
+
+knitr::kable(Workplace_Japan, caption = "First Workplace Restriction") %>%
+	kable_styling()
+
+
+```
+
+
 
 ## Conclusions
 
-## Viewing this project
+### Viewing this project
 The completed project files can be accessed online at file:///Users/laurenthomas/COVID-19/README.html. The repo for this reproducible project is also publicly available at https://github.com/thomal29/COVID-19
