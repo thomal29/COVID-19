@@ -1,11 +1,17 @@
 ---
 title: "COVID-19 Research Project"
-author: "Lauren Thomas"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output: html_document
-theme: cerulean
-hihghlight: monochrome
 
+author: "Lauren Thomas"
+
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+output:
+
+  rmarkdown::html_document:
+
+    theme: cerulean
+
+    highlight: monochrome
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
@@ -45,7 +51,7 @@ read_csv("./raw_data/OxCGRT_latest.csv") %>%
 ## Data 
 
 ### Analyses 
-
+<br/>
 
 
 ```{r First_Case}
@@ -58,10 +64,13 @@ knitr::kable(first_case, caption = "First COVID-19 Case") %>%
 	kable_styling(position = "float_left")
 
 ```
+<br/>
+<br/>
 
 ```{r Workplace_Thailand}
+
 Workplace_Thailand <- read_csv("./output/covid_data.csv") %>%
-	select("Ordinal_Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
+	select("Ordinal Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
 	filter(Country == "Thailand", date <= "2020-03-22", date >= "2020-03-15") %>%
 	arrange(date) 
 	
@@ -73,18 +82,134 @@ knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction") %>%
 
 ```
 
-^[2 on the 'Ordinal scale' represents, "required closing (or work from home) for some categories of workers.]
-
+<br/>
+<br/>
 
 
 ```{r Workplace_Japan}
 Workplace_Japan <- read_csv("./output/covid_data.csv") %>%
-	select("Ordinal_Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
+	select("Ordinal Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
 	filter(Country == "Japan", date >= "2020-02-22", date <= "2020-02-29") %>%
 	arrange(date)
 
 knitr::kable(Workplace_Japan, caption = "First Workplace Restriction") %>%
 	kable_styling()
+
+
+```
+<br/>
+<br/>
+
+```{r Cases_Before_Workforce}
+
+Cases_Before_T <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Thailand", date <= "2020-03-17") %>%
+	arrange(date)
+
+Cases_Before_J <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Japan", date <= "2020-02-25") %>%
+	arrange(date)
+
+ggplot(data = Cases_Before_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Before_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Workplace Restriction")
+
+
+
+
+
+
+```
+<br/>
+<br/>
+
+```{r Cases_After_Workforce}
+
+Cases_After_T <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Thailand", date >= "2020-03-17") %>%
+	arrange(date)
+
+Cases_After_J <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Japan", date >= "2020-02-25") %>%
+	arrange(date)
+
+ggplot(data = Cases_After_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_After_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases After Workplace Restriction")
+
+
+```
+<br/>
+<br/>
+<br/>
+
+```{r Home_Thailand}
+
+Home_Thailand <- read_csv("./output/covid_data.csv") %>%
+	select("Ordinal Scale" = "C6_Stay at home requirements", "date" = "Date", "Country" = "CountryName") %>%
+	filter(Country == "Thailand", date <= "2020-03-23", date >= "2020-03-15") %>%
+	arrange(date)
+
+knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction") %>%
+	kable_styling()
+
+
+```
+<br/>
+<br/>
+
+```{r Home_Japan}
+
+Home_Japan <- read_csv("./output/covid_data.csv") %>%
+	select("Ordinal Scale" = "C6_Stay at home requirements", "date" = "Date", "Country" = "CountryName") %>%
+	filter(Country == "Japan", date <= "2020-04-09", date >= "2020-04-02") %>%
+	arrange(date)
+
+
+knitr::kable(Home_Japan, caption = "First Stay at Home Restriction") %>%
+	kable_styling()
+
+
+```
+<br/>
+<br/>
+
+```{r Cases_Before_Home}
+
+Cases_Be4_Home_T <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Thailand", date <= "2020-03-21") %>%
+	arrange(date)
+
+
+Cases_Be4_Home_J <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Japan", date <= "2020-04-07") %>%
+	arrange(date) 
+
+
+
+ggplot(data = Cases_Be4_Home_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Be4_Home_T, Colour = 'purple') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Stay At Home Restriction")
+
+
+
+```
+
+```{r Cases_After_Home}
+
+Cases_Af_Home_T <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Thailand", date >= "2020-03-21") %>%
+	arrange(date)
+
+Cases_Af_Home_J <- read_csv("./output/covid_data.csv") %>%
+	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
+	filter(Country == "Japan", date >= "2020-04-07") %>%
+	arrange(date)
+
+
+
+ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Af_Home_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases After Stay At Home Restriction")
 
 
 ```
