@@ -9,7 +9,7 @@ output:
 
   rmarkdown::html_document:
 
-    theme: cerulean
+    theme: journal
 
     highlight: monochrome
 ---
@@ -45,15 +45,20 @@ read_csv("./raw_data/OxCGRT_latest.csv") %>%
 ```
 
 ## Introduction
-
-## Hypothesis
-
-## Data 
-
-### Analyses 
 <br/>
 
+## Hypothesis
+<br/>
 
+## Data 
+<br/>
+
+## Analyses 
+<br/>
+<br/>
+<br/>
+
+### The first cases of COVID-19 ever to be documented
 ```{r First_Case}
 first_case <- read_csv("./raw_data/owid-covid-data.csv") %>%
 	select("Total_Cases" = "total_cases", "Date" = "date", "Country" = "location") %>%
@@ -66,7 +71,12 @@ knitr::kable(first_case, caption = "First COVID-19 Case") %>%
 ```
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+### The implementation of a workplace restriction in Thailand
 ```{r Workplace_Thailand}
 
 Workplace_Thailand <- read_csv("./output/covid_data.csv") %>%
@@ -81,11 +91,14 @@ knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction") %>%
 
 
 ```
-
+<br/>
+<br/>
+<br/>
+<br/>
 <br/>
 <br/>
 
-
+### The implementation of a workplace restriction in Japan
 ```{r Workplace_Japan}
 Workplace_Japan <- read_csv("./output/covid_data.csv") %>%
 	select("Ordinal Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
@@ -99,7 +112,12 @@ knitr::kable(Workplace_Japan, caption = "First Workplace Restriction") %>%
 ```
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+### COVID-19 before workforce restriction
 ```{r Cases_Before_Workforce}
 
 Cases_Before_T <- read_csv("./output/covid_data.csv") %>%
@@ -122,7 +140,12 @@ ggplot(data = Cases_Before_J, aes(x = date, y = Cases, color = Country)) + geom_
 ```
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+### COVID-19 after workforce restriction
 ```{r Cases_After_Workforce}
 
 Cases_After_T <- read_csv("./output/covid_data.csv") %>%
@@ -142,7 +165,11 @@ ggplot(data = Cases_After_J, aes(x = date, y = Cases, color = Country)) + geom_l
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
 
+### The implementation of a stay at home order in Thailand
 ```{r Home_Thailand}
 
 Home_Thailand <- read_csv("./output/covid_data.csv") %>%
@@ -157,7 +184,12 @@ knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction") %>%
 ```
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+### The implementation of a stay at home order in Japan
 ```{r Home_Japan}
 
 Home_Japan <- read_csv("./output/covid_data.csv") %>%
@@ -173,7 +205,12 @@ knitr::kable(Home_Japan, caption = "First Stay at Home Restriction") %>%
 ```
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+### COVID-19 cases before stay at home order
 ```{r Cases_Before_Home}
 
 Cases_Be4_Home_T <- read_csv("./output/covid_data.csv") %>%
@@ -194,7 +231,14 @@ ggplot(data = Cases_Be4_Home_J, aes(x = date, y = Cases, color = Country)) + geo
 
 
 ```
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+### COVID-19 cases after stay at home order
 ```{r Cases_After_Home}
 
 Cases_Af_Home_T <- read_csv("./output/covid_data.csv") %>%
@@ -213,8 +257,22 @@ ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom
 
 
 ```
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+**Figure 1:** *Codebook for the Oxford COVID-19 Government Response Tracker*
+
+```{r codebook}
+kable(read_csv("./raw_data/Codebook.csv")) %>%
+	kable_styling(position = "float_left")
 
 
+```
 
 ## Conclusions
 
