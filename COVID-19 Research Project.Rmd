@@ -44,13 +44,35 @@ read_csv("./raw_data/OxCGRT_latest.csv") %>%
 
 ```
 
+![COVID-19](https://www.pisab.org/wp-content/uploads/2020/05/CoronaVirusHeader-Final-3.jpg)
+
+
+
 ## Introduction
+<br/>
+This project is for Biology 390: Reproducible Research at Ferris State University. I worked with a large dataset to create and share a reproducible research report online on my own website. The topic of COVID-19 (Corona Virus) pandemic was chosen because it is of great interest to the world at this point in time. After researching many datasets, I created a hypothesis of my own to explore. This project is under version control using git/Github and is written as an R markdown (Rmd) file.
+<br/>
+<br/>
 <br/>
 
 ## Hypothesis
 <br/>
+COVID-19 reached 'pandemic' status quite some time ago. A pandemic is where a disease is prevelant over the entire world. It is everywhere. And living in this pandemic, it is hard to remember life before or when all this even started; it all happened so fast. I remember hearing something about China and a bat a while ago. But which two countries were (actually) the first to see this virus? And how would they compare in regards to number of cases versus satefty measurements their nation took? It's easy to assume the first country to see COVID-19 would be the first to get it under control. Here is my hypothesis; *faster safety measure implementation leads to a faster decrease in cases.* 
+<br/>
+<br/>
+<br/>
 
 ## Data 
+For this project I used two different data sets that were available online for free. This is the information I used: <br/>
+<br/>
+**1.** Systematic dataset of COVID-19 policy, from Oxford University.<br/>
+URL: *[www.bsg.ox.ac.uk/covidtracker](https://www.bsg.ox.ac.uk/research/research-projects/coronavirus-government-response-tracker)* <br/>
+<br/>
+**2.** Data on COVID-19 confirmed cases, deaths, and tests. All countries. Updated daily by 'Our World in Data'. <br/>
+URL: *[ourworldindata.org/coronavirus](https://ourworldindata.org/coronavirus)* <br/>
+**Image.** *[www.pisab.org] (https://www.pisab.org/wp-content/uploads/2020/05/CoronaVirusHeader-Final-3.jpg)*
+<br/>
+<br/>
 <br/>
 
 ## Analyses 
@@ -273,7 +295,10 @@ kable(read_csv("./raw_data/Codebook.csv")) %>%
 
 
 ```
-
+<br/>
+<br/>
+<br/>
+<br/>
 ## Conclusions
 
 ### Viewing this project

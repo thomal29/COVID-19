@@ -1,0 +1,80 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error - OxGCRT Portal</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/global-4.css" />
+    <link rel="stylesheet" href="/css/front-page-4.css" />
+    <link rel="stylesheet" href="/css/table-styles-4.css" />
+    <link rel="stylesheet" href="/css/specific-controls-4.css" />
+    <link rel="stylesheet" href="/css/pop-ups-4.css" />
+
+
+</head>
+<body>
+    <header>
+        <div class="toolbar">
+            <div class="oxcgrt-logo">OxCGRT Portal</div>
+            <a class="toolbar-link" href="/">Home</a>
+            <a class="toolbar-link" href="/View">View Data</a>
+
+
+            <div class="spacer"></div>
+
+
+
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <main role="main">
+            
+
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+        <div class="alert alert-danger">
+            This website has produced an error!
+        </div>
+        <p>
+            Please bear in mind that this website is very much under construction and not all possible errors have been caught.
+
+            It would be helpful if you could let me know what you were doing when this error occurred - please use the form here.
+
+            Thanks!
+        </p>
+
+
+        <form method="post">
+            <textarea value="" rows="10" cols="100" id="ErrorDescription" name="ErrorDescription">
+</textarea>
+            <button type="submit" class="btn btn-info">Email</button>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CqkaQftTkhEmCGI6e7JunrWs5OYq28-rZyZ9IqprITwiyGZhtBpZ-zvIv0dy2LT9xyuD2C_tdSWirPTuAIDC8WhLBdal9L_NwcOid38qKsDhfQ3Pi6c4XzKmbWvRqxzzEy-kMs2t4O4OM_Rx-d8ifU" /></form>
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>
+
+
+        </main>
+
+    </div>
+
+      
+
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/site.js?v=8I6Ia91Itzt1K3AvDVtObvpgKeLeXUTAd2nkuoSPwm0"></script>
+
+        
+</body>
+</html>
