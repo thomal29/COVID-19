@@ -1,11 +1,11 @@
 ﻿ID,Name,Description,Measurement,Coding
-C2,C2_Workplace closing,Record closings of workplaces,Ordinal scale,"0 - no measures <br/>
-1 - recommend closing (or recommend work from home) <br/>
-2 - require closing (or work from home) for some sectors or categorries of workers <br/>
-3 - require closing (or work from home) for all-but-essential workplaces (eg grocery stores, doctors) <br/>
-Blank - no data"
-C6,C6_Stay at home requirements,"Record orders to ""shelter-in-place"" and otherwise confine to the home",Ordinal scale,"0 - no measures <br/>
-1 - recommend not leaving house <br/>
-2 - rerquire not leaving house with exceptions for daily exercise, grocery shopping, and 'essential' trips <br/>
-3 - require not leaving house with minimal exceptions (eg allowed to leave house once a week, or only one person can leave at a time, etc) <br/>
-Blank - no data"
+C2,C2_Workplace closing,Record closings of workplaces,Ordinal Scale,0 - no measures
+,,,,1 - recommend closing (or recommend work from home)
+,,,,2 - require closing (or work from home) for some sectors or categories of workers.
+,,,,"3 - require closing (or work from home) for all-but-essential workplaces (eg grocery stores, doctors)"
+,,,,blank - no data
+C6,C6_Stay at home rerquirements,"Record orders to ""shelter-in-place"" and otherwise confine to the home",Ordinal Scale,0 - no measures
+,,,,1 -  recommend not leaving house
+,,,,"2 - require not leaving house with exceptions for daily exercise, grocery shopping, and 'essential trips'"
+,,,,"3 - require not leaving house with minimal exceptions (eg allowed to leave house once a week, or only one person can leave aat a time, etc)"
+,,,,blank - no data
