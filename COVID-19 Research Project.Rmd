@@ -96,8 +96,55 @@ knitr::kable(first_case, caption = "First COVID-19 Case") %>%
 <br/>
 The first COVID-19 case was 01-13-2020; actually much earlier than I thought it would be. This case was, to my surprise, in Thailand. The third case was only two days later in Japan. It is also interesting to consider that Japan and Thailand are 2,700 miles apart. These are my countries of interest.  
 <br/>
-Next, I determined the official start dates of a workplace restriction in both countries. 
 <br/>
+Next, I determined the official start dates of a workplace restriction in both countries. Below this is charted for the countries separately, starting with Thailand. <br/>
+<br/>
+<br/>
+<br/>
+*Important to know* The safety regulations are set on an ordinal scale that represent the level of strictness of the policy. *Figure 1* below, shows the meaning of each level for workplace and home laws.
+<br/>
+<br/>
+<br/>
+<br/>
+**Figure 1:** *Codebook for the Oxford COVID-19 Government Response Tracker*
+```{r codebook}
+
+makeHTMLTable <- function(table, tableID) {
+  filerow = c("")
+  i = 1
+  filerow[i] = "<div><table><tr>"
+  i = i + 1
+  for(column_name in attr(table, "names")) {
+    filerow[i] = paste("<th>", column_name, "</th>", sep = "")
+    i = i + 1
+  }
+  filerow[i] = "</tr>"
+  num_row = 1
+  for(rows in table[[1]]) {
+    num_col = 1
+    i = i + 1
+    filerow[i] = "<tr>"
+    for(cols in table[1,]) {
+      i = i + 1
+      filerow[i] = paste("<td>", if(is.na(table[num_row,num_col])){""}else{table[num_row,num_col]}, "</td>", sep = "")
+      num_col = num_col + 1
+    }
+    i = i + 1
+    filerow[i] = "</tr>"
+    num_row = num_row + 1
+  }
+  i = i + 1
+  filerow[i] = "</table></div>"
+  write.table(filerow, paste("./output/", tableID, ".html", sep = ""), row.names = FALSE, col.names = FALSE, quote = FALSE)
+}
+
+tibble <- read_csv("./raw_data/codebook.csv")
+makeHTMLTable(tibble, "codebook_table")
+htmltools::includeHTML("./output/codebook_table.html")
+
+```
+
+
 <br/>
 <br/>
 <br/>
@@ -120,9 +167,6 @@ knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction") %>%
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
 
 ### The implementation of a workplace restriction in Japan
 ```{r Workplace_Japan}
@@ -138,8 +182,10 @@ knitr::kable(Workplace_Japan, caption = "First Workplace Restriction") %>%
 ```
 <br/>
 <br/>
+As you can see, Japan was first to restrict the workforce. In fact, they were 21 days before Thailand- almost a month. In addition to this, the level of strictness differs. Thailand was only one level 'stricter' than Japan. Neither of these countries chose the strictest measures.  
 <br/>
 <br/>
+Now let us look at number of official confirmed cases of COVID-19 in both countries *before* workforce changes. Below, you can see the line graph displaying this information. The time-line of the graph starts with each countries first case up till the time of the workforce restriction.
 <br/>
 <br/>
 
@@ -158,16 +204,13 @@ Cases_Before_J <- read_csv("./output/covid_data.csv") %>%
 
 ggplot(data = Cases_Before_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Before_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Workplace Restriction")
 
-
-
-
-
-
 ```
 <br/>
 <br/>
+As you can see, Thailand does indeed start before Japan and rises for a small amount of time at a greater rate than Japan. However, mid-Feb shows a huge increase of confirmation rate in Japan. According to [Worldometers.info](https://www.worldometers.info/world-population/thailand-population/#:~:text=The%20current%20population%20of%20Thailand,of%20the%20total%20world%20population.), Thailand's 2020 population is about 69 million. In comparison, Japan's population is estimated to be around 126 million. 
 <br/>
 <br/>
+Below is the graph showing confirmed cases *after* the work-place restrictions. 
 <br/>
 <br/>
 
@@ -190,8 +233,11 @@ ggplot(data = Cases_After_J, aes(x = date, y = Cases, color = Country)) + geom_l
 ```
 <br/>
 <br/>
+The first thing you might notice is that the graph seems much more smoother. This indicates less of a presence of rapid increases in cases. The most striking difference is that Japan continues to climb, leveling off a bit between May and July, while Thailand levels off shortly after the changes made and continued to stay that way. Remember, Thailand was 21 days later than Japan but was one level higher on the ordinal scale. *(Refer to Figure 1 at beginning of report to see what each level represents)* <br/>
+This information suggests that the addition of work-place restrictions was beneficial in both countries; however, more intensely in Thailand. 
 <br/>
 <br/>
+
 <br/>
 <br/>
 
@@ -212,6 +258,7 @@ knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction") %>%
 <br/>
 <br/>
 <br/>
+The second regulation I investigated was stay-at-home orders in both countries. Let's see if there are similar trends. Just like previously, I started with pinpointing the first date these orders were in effect in Thailand and Japan. Who was first this time?
 <br/>
 <br/>
 
@@ -291,44 +338,9 @@ ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom
 <br/>
 <br/>
 
-**Figure 1:** *Codebook for the Oxford COVID-19 Government Response Tracker*
 
-```{r codebook}
 
-makeHTMLTable <- function(table, tableID) {
-  filerow = c("")
-  i = 1
-  filerow[i] = "<div><table><tr>"
-  i = i + 1
-  for(column_name in attr(table, "names")) {
-    filerow[i] = paste("<th>", column_name, "</th>", sep = "")
-    i = i + 1
-  }
-  filerow[i] = "</tr>"
-  num_row = 1
-  for(rows in table[[1]]) {
-    num_col = 1
-    i = i + 1
-    filerow[i] = "<tr>"
-    for(cols in table[1,]) {
-      i = i + 1
-      filerow[i] = paste("<td>", if(is.na(table[num_row,num_col])){""}else{table[num_row,num_col]}, "</td>", sep = "")
-      num_col = num_col + 1
-    }
-    i = i + 1
-    filerow[i] = "</tr>"
-    num_row = num_row + 1
-  }
-  i = i + 1
-  filerow[i] = "</table></div>"
-  write.table(filerow, paste("./output/", tableID, ".html", sep = ""), row.names = FALSE, col.names = FALSE, quote = FALSE)
-}
 
-tibble <- read_csv("./raw_data/codebook.csv")
-makeHTMLTable(tibble, "codebook_table")
-htmltools::includeHTML("./output/codebook_table.html")
-
-```
 <br/>
 <br/>
 <br/>
