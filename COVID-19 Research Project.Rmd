@@ -89,7 +89,7 @@ first_case <- read_csv("./raw_data/owid-covid-data.csv") %>%
 	filter(Total_Cases == 1, Date <= "2020-01-19") %>%
 	arrange(Date) 
 			
-knitr::kable(first_case, caption = "First COVID-19 Case") %>%
+knitr::kable(first_case, caption = "First COVID-19 Case", align = "c") %>%
 	kable_styling(position = "float_left")
 
 ```
@@ -158,7 +158,7 @@ Workplace_Thailand <- read_csv("./output/covid_data.csv") %>%
 	arrange(date) 
 	
 
-knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction") %>%
+knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction", align = "c") %>%
 	kable_styling()
 	
 
@@ -175,7 +175,7 @@ Workplace_Japan <- read_csv("./output/covid_data.csv") %>%
 	filter(Country == "Japan", date >= "2020-02-22", date <= "2020-02-29") %>%
 	arrange(date)
 
-knitr::kable(Workplace_Japan, caption = "First Workplace Restriction") %>%
+knitr::kable(Workplace_Japan, caption = "First Workplace Restriction", align = "c") %>%
 	kable_styling()
 
 
@@ -237,7 +237,8 @@ The first thing you might notice is that the graph seems much more smoother. Thi
 This information suggests that the addition of work-place restrictions was beneficial in both countries; however, more intensely in Thailand. 
 <br/>
 <br/>
-
+<br/>
+The second regulation I investigated was stay-at-home orders in both countries. Let's see if there are similar trends. Just like previously, I started with pinpointing the first date these orders were in effect in Thailand and Japan. Who was first this time?
 <br/>
 <br/>
 
@@ -249,16 +250,12 @@ Home_Thailand <- read_csv("./output/covid_data.csv") %>%
 	filter(Country == "Thailand", date <= "2020-03-23", date >= "2020-03-15") %>%
 	arrange(date)
 
-knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction") %>%
+knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction", align = "c") %>%
 	kable_styling()
 
 
 ```
 <br/>
-<br/>
-<br/>
-<br/>
-The second regulation I investigated was stay-at-home orders in both countries. Let's see if there are similar trends. Just like previously, I started with pinpointing the first date these orders were in effect in Thailand and Japan. Who was first this time?
 <br/>
 <br/>
 
@@ -278,7 +275,8 @@ knitr::kable(Home_Japan, caption = "First Stay at Home Restriction") %>%
 ```
 <br/>
 <br/>
-<br/>
+This time Thailand was first; 17 days ahead of Japan. (Opposite of what was seen previously). Also, booth countries had the same level in ordinal scale. <br/>
+Now how did this affect COVID cases? See the line graphs below to find out. The first graph, like before shows cases *before* any implementation of restrictions.  
 <br/>
 <br/>
 <br/>
@@ -306,6 +304,7 @@ ggplot(data = Cases_Be4_Home_J, aes(x = date, y = Cases, color = Country)) + geo
 ```
 <br/>
 <br/>
+Visually, this graph is similar to the previous 'before' graph. It just looks a little different because the timeline is a bit longer here- right before stay-at-home orders were made. 
 <br/>
 <br/>
 <br/>
@@ -332,6 +331,7 @@ ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom
 ```
 <br/>
 <br/>
+This timeline starts at 03/21 (Thaland's date).
 <br/>
 <br/>
 <br/>
