@@ -331,22 +331,19 @@ ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom
 ```
 <br/>
 <br/>
-This timeline starts at 03/21 (Thaland's date).
-<br/>
-<br/>
+This time-line starts at 03/21 (Thaland's date). Again, Thailand stagnates around 
+May and stays there. Both countries dipped in case numbers around April and May. Japan overall, does increase cases but at a much slower rate. Again, you can infer this by seeing how this graph is smooth.  
 <br/>
 <br/>
 <br/>
 
-
-
-
-<br/>
-<br/>
-<br/>
-<br/>
 
 ## Conclusions
+So what does all of this information mean? In both sets of graphs the rate was lowered after satefty measures were taken. Each country decreased at different rates; Thailand's cases dropped dramatically while Japan's slowed down but cases still seemed to climb.This difference could be due to the discrepency in population (Japan, with almost twice the population as Thailand). This analysis was not conclusive by any means and more analyses should be made before a definitive answer is reached. However, what I have found suggests that faster safety measure implementation does lead to a faster decrease in confirmed case rates. 
+<br/>
+<br/>
+<br/>
+
 
 ### Viewing this project
 The completed project files can be accessed online at file:///Users/laurenthomas/COVID-19/README.html. The repo for this reproducible project is also publicly available at https://github.com/thomal29/COVID-19
