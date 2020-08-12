@@ -349,7 +349,7 @@ It is essential to note the green vertical line. This represents when Japan lift
 
 ## Conclusions
 So what does all of this information mean? In both sets of graphs the rate was lowered after satefty measures were taken. Each country decreased at different rates; Thailand's cases dropped dramatically while Japan's slowed down but cases still seemed to climb.This difference could be due to the discrepency in population (Japan, with almost twice the population as Thailand). This discrepancy becomes much larger in the second set of graphs where Japan lifts up on the lockdown.
-This analysis was not conclusive by any means and more analyses should be made before a definitive answer is reached. However, what I have found does suggest that faster safety measure implementation *and* the contonuation of said implementation does lead to a faster decrease in confirmed case rates. 
+This analysis was not conclusive by any means and more analyses should be made before a definitive answer is reached. However, what I have found does suggest that faster safety measure implementation *and* the continuation of said implementation does lead to a faster decrease in confirmed case rates. 
 <br/>
 <br/>
 <br/>
