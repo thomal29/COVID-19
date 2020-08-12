@@ -86,8 +86,11 @@ When it came to the analytics, I decided to do 4 analyses to explore my hypothes
 ```{r First_Case}
 first_case <- read_csv("./raw_data/owid-covid-data.csv") %>%
 	select("Total_Cases" = "total_cases", "Date" = "date", "Country" = "location") %>%
-	filter(Total_Cases == 1, Date <= "2020-01-19") %>%
-	arrange(Date) 
+	filter(Total_Cases >= 1, Date <= "2020-01-19" & Country != "China" & Country != "World") %>%
+	arrange(Date) %>%
+	group_by(Country) %>%
+	slice(1) %>%
+	arrange(Date)
 			
 knitr::kable(first_case, caption = "First COVID-19 Case", align = "c") %>%
 	kable_styling(position = "float_left")
@@ -154,9 +157,8 @@ htmltools::includeHTML("./output/codebook_table.html")
 
 Workplace_Thailand <- read_csv("./output/covid_data.csv") %>%
 	select("Ordinal Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
-	filter(Country == "Thailand", date <= "2020-03-22", date >= "2020-03-15") %>%
-	arrange(date) 
-	
+	filter(Country == "Thailand", date <= "2020-03-17", date >= "2020-03-16") %>%
+	arrange(date)
 
 knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction", align = "c") %>%
 	kable_styling()
@@ -172,7 +174,7 @@ knitr::kable(Workplace_Thailand, caption = "First Workplace Restriction", align 
 ```{r Workplace_Japan}
 Workplace_Japan <- read_csv("./output/covid_data.csv") %>%
 	select("Ordinal Scale" = "C2_Workplace closing", "date" = "Date", "Country" = "CountryName") %>%
-	filter(Country == "Japan", date >= "2020-02-22", date <= "2020-02-29") %>%
+	filter(Country == "Japan", date >= "2020-02-24", date <= "2020-02-25") %>%
 	arrange(date)
 
 knitr::kable(Workplace_Japan, caption = "First Workplace Restriction", align = "c") %>%
@@ -195,14 +197,17 @@ Now let us look at number of official confirmed cases of COVID-19 in both countr
 Cases_Before_T <- read_csv("./output/covid_data.csv") %>%
 	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
 	filter(Country == "Thailand", date <= "2020-03-17") %>%
-	arrange(date)
+	arrange(date) %>%
+	mutate(Cases = if_else(is.na(Cases), lag(Cases, 1), Cases)) %>%
+	mutate(Cases = if_else(is.na(Cases), lag(Cases, 1), Cases)) %>%
+	mutate(Cases = if_else(is.na(Cases), lag(Cases, 1), Cases))
 
 Cases_Before_J <- read_csv("./output/covid_data.csv") %>%
 	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
 	filter(Country == "Japan", date <= "2020-02-25") %>%
 	arrange(date)
 
-ggplot(data = Cases_Before_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Before_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Workplace Restriction")
+ggplot(data = Cases_Before_J, aes(x = date, y = Cases, color = Country)) + geom_line(size = 1.5) + geom_line(data = Cases_Before_T, Colour = 'red', size = 1.5) + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Workplace Restriction")
 
 ```
 <br/>
@@ -247,7 +252,7 @@ The second regulation I investigated was stay-at-home orders in both countries. 
 
 Home_Thailand <- read_csv("./output/covid_data.csv") %>%
 	select("Ordinal Scale" = "C6_Stay at home requirements", "date" = "Date", "Country" = "CountryName") %>%
-	filter(Country == "Thailand", date <= "2020-03-23", date >= "2020-03-15") %>%
+	filter(Country == "Thailand", date <= "2020-03-21", date >= "2020-03-20") %>%
 	arrange(date)
 
 knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction", align = "c") %>%
@@ -264,7 +269,7 @@ knitr::kable(Home_Thailand, caption = "First Stay at Home Restriction", align = 
 
 Home_Japan <- read_csv("./output/covid_data.csv") %>%
 	select("Ordinal Scale" = "C6_Stay at home requirements", "date" = "Date", "Country" = "CountryName") %>%
-	filter(Country == "Japan", date <= "2020-04-09", date >= "2020-04-02") %>%
+	filter(Country == "Japan", date <= "2020-04-07", date >= "2020-04-06") %>%
 	arrange(date)
 
 
@@ -287,7 +292,10 @@ Now how did this affect COVID cases? See the line graphs below to find out. The 
 Cases_Be4_Home_T <- read_csv("./output/covid_data.csv") %>%
 	select("date" = "Date", "Country" = "CountryName", "Cases" = "ConfirmedCases") %>%
 	filter(Country == "Thailand", date <= "2020-03-21") %>%
-	arrange(date)
+	arrange(date) %>%
+	mutate(Cases = if_else(is.na(Cases), lag(Cases, 1), Cases)) %>%
+	mutate(Cases = if_else(is.na(Cases), lag(Cases, 1), Cases)) %>%
+	mutate(Cases = if_else(is.na(Cases), lag(Cases, 1), Cases))
 
 
 Cases_Be4_Home_J <- read_csv("./output/covid_data.csv") %>%
@@ -297,7 +305,7 @@ Cases_Be4_Home_J <- read_csv("./output/covid_data.csv") %>%
 
 
 
-ggplot(data = Cases_Be4_Home_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Be4_Home_T, Colour = 'purple') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Stay At Home Restriction")
+ggplot(data = Cases_Be4_Home_J, aes(x = date, y = Cases, color = Country)) + geom_line(size = 1.5) + geom_line(data = Cases_Be4_Home_T, Colour = 'purple', size = 1.5) + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases Before Stay At Home Restriction")
 
 
 
