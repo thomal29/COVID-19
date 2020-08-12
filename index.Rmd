@@ -333,21 +333,23 @@ Cases_Af_Home_J <- read_csv("./output/covid_data.csv") %>%
 
 
 
-ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Af_Home_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases After Stay At Home Restriction")
+ggplot(data = Cases_Af_Home_J, aes(x = date, y = Cases, color = Country)) + geom_line() + geom_line(data = Cases_Af_Home_T, Colour = 'red') + labs(x = "Date", y = "Confirmed Cases") + theme_linedraw() + ggtitle("Confirmed COVID-19 Cases After Stay At Home Restriction") + geom_vline(aes(xintercept = mdy("05-25-2020")), color = "green")
 
 
 ```
 <br/>
 <br/>
 This time-line starts at 03/21 (Thaland's date). Again, Thailand stagnates around 
-May and stays there. Both countries dipped in case numbers around April and May. Japan overall, does increase cases but at a much slower rate. Again, you can infer this by seeing how this graph is smooth.  
+May and stays there. Both countries dipped in case numbers around April and May. Japan overall, does increase cases but at a much slower rate than before. Again, you can infer this by seeing how this graph is smooth. <br/>
+It is essential to note the green vertical line. This represents when Japan lifted all their lock-down restrictions (May 25th to be exact). Thailand did not. You can see how the rate increases later on. Thailand, sticking with it, stayed at the same rate. What would've happened if Japan never lifted these measures?
 <br/>
 <br/>
 <br/>
 
 
 ## Conclusions
-So what does all of this information mean? In both sets of graphs the rate was lowered after satefty measures were taken. Each country decreased at different rates; Thailand's cases dropped dramatically while Japan's slowed down but cases still seemed to climb.This difference could be due to the discrepency in population (Japan, with almost twice the population as Thailand). This analysis was not conclusive by any means and more analyses should be made before a definitive answer is reached. However, what I have found suggests that faster safety measure implementation does lead to a faster decrease in confirmed case rates. 
+So what does all of this information mean? In both sets of graphs the rate was lowered after satefty measures were taken. Each country decreased at different rates; Thailand's cases dropped dramatically while Japan's slowed down but cases still seemed to climb.This difference could be due to the discrepency in population (Japan, with almost twice the population as Thailand). This discrepancy becomes much larger in the second set of graphs where Japan lifts up on the lockdown.
+This analysis was not conclusive by any means and more analyses should be made before a definitive answer is reached. However, what I have found does suggest that faster safety measure implementation *and* the contonuation of said implementation does lead to a faster decrease in confirmed case rates. 
 <br/>
 <br/>
 <br/>
